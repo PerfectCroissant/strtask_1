@@ -7,8 +7,13 @@ import utils  # Рекомендуем ознакомиться для выпо�
 
 const RootDir = "folder"
 # Ниже реализуйте требуемую задачу
-var dirs, files, exts: seq[string]
 
+var dirs, files, exts: seq[string]
+dirs.add(getDirs(RootDir))
+dirs = map(dirs, proc(item: string): string = item.replace(" ", "_")) # Заменяем в названии всех папок пробелы на _
+files.add(getFiles(RootDir))
+exts.add(getFiles(RootDir))
+exts = map(exts, proc(item: string): string = splitFile(item).ext) # splitFile "делит" строку с расположением файла на путь, имя файла и его расширение. Нам нужно только расширение файла, поэтому обращаемся к нему, указывая ".ext"
 
 # Не изменяйте код ниже
 import sets
